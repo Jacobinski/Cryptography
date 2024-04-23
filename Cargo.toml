@@ -3,6 +3,8 @@ name = "cryptography"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[[bin]]
+name = "s1q1_convert_hex_to_base64"
 
 [dependencies]
+base64 = "0.22.0"
