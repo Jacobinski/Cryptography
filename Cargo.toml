@@ -6,5 +6,8 @@ edition = "2021"
 [[bin]]
 name = "s1q1_convert_hex_to_base64"
 
+[[bin]]
+name = "s1q2_fixed_xor"
+
 [dependencies]
 base64 = "0.22.0"
