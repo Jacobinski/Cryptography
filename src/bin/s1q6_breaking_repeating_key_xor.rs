@@ -8,34 +8,35 @@ use std::iter::zip;
 lazy_static::lazy_static! {
     // FREQUENCIES gives the relative frequencies of English characters.
     // Input must be in the form of a lowercase ASCII character's byte representation.
-    // Source: https://pi.math.cornell.edu/~mec/2003-2004/cryptography/subs/hints.html
+    // Source: https://web.archive.org/web/20170918020907/http://www.data-compression.com/english.html
     static ref FREQUENCIES: HashMap<u8, f32> = HashMap::from([
-        (b'e', 21912.0 / 40000.0),
-        (b't', 16587.0 / 40000.0),
-        (b'a', 14810.0 / 40000.0),
-        (b'o', 14003.0 / 40000.0),
-        (b'i', 13318.0 / 40000.0),
-        (b'n', 12666.0 / 40000.0),
-        (b's', 11450.0 / 40000.0),
-        (b'r', 10977.0 / 40000.0),
-        (b'h', 10795.0 / 40000.0),
-        (b'd', 7874.0 / 40000.0),
-        (b'l', 7253.0 / 40000.0),
-        (b'u', 5246.0 / 40000.0),
-        (b'c', 4943.0 / 40000.0),
-        (b'm', 4761.0 / 40000.0),
-        (b'f', 4200.0 / 40000.0),
-        (b'y', 3853.0 / 40000.0),
-        (b'w', 3819.0 / 40000.0),
-        (b'g', 3693.0 / 40000.0),
-        (b'p', 3316.0 / 40000.0),
-        (b'b', 2715.0 / 40000.0),
-        (b'v', 2019.0 / 40000.0),
-        (b'k', 1257.0 / 40000.0),
-        (b'x', 315.0 / 40000.0),
-        (b'q', 205.0 / 40000.0),
-        (b'j', 188.0 / 40000.0),
-        (b'z', 128.0 / 40000.0),
+        (b'a', 0.0651738),
+        (b'b', 0.0124248),
+        (b'c', 0.0217339),
+        (b'd', 0.0349835),
+        (b'e', 0.1041442),
+        (b'f', 0.0197881),
+        (b'g', 0.0158610),
+        (b'h', 0.0492888),
+        (b'i', 0.0558094),
+        (b'j', 0.0009033),
+        (b'k', 0.0050529),
+        (b'l', 0.0331490),
+        (b'm', 0.0202124),
+        (b'n', 0.0564513),
+        (b'o', 0.0596302),
+        (b'p', 0.0137645),
+        (b'q', 0.0008606),
+        (b'r', 0.0497563),
+        (b's', 0.0515760),
+        (b't', 0.0729357),
+        (b'u', 0.0225134),
+        (b'v', 0.0082903),
+        (b'w', 0.0171272),
+        (b'x', 0.0013692),
+        (b'y', 0.0145984),
+        (b'z', 0.0007836),
+        (b' ', 0.1918182),
     ]);
 }
 
@@ -157,13 +158,10 @@ fn main() {
         solution.push(best_key);
     }
 
-    println!(
-        "Found Cipher:\n{}\n",
-        String::from_utf8(solution.clone()).unwrap()
-    );
+    let solution_text = String::from_utf8(solution.clone()).unwrap();
+    println!("Found Cipher:\n{}\n", solution_text);
+    assert_eq!(solution_text, "Terminator X: Bring the noise");
+
     let decrypted = decrypt(&encrypted, &solution);
-    println!(
-        "Decrypted Text:\n{}\n",
-        String::from_utf8(decrypted).unwrap()
-    );
+    println!("Decrypted Text:\n{}", String::from_utf8(decrypted).unwrap());
 }
