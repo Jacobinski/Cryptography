@@ -12,3 +12,4 @@ name = "s1q2_fixed_xor"
 [dependencies]
 base64 = "0.22.0"
 hex = "0.4.3"
+lazy_static = "1.4.0"
